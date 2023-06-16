@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% block styles %}
+  <!-- Bootstrap CSS -->
+  {{ bootstrap.load_css() }}
+  {% endblock %}
+
+  <title>Your page title</title>
+  {% endblock %}
+</head>
+
+<body>
+  <div class="container">
+
+
+    <h1>Check recurring transaction, base on month and day</h1>
+    <form id="analyze-form">
+      <div class="form-group">
+        <label for="transaction-date">Transaction Date</label>
+        <input type="date" class="form-control" id="transaction-date" placeholder="Transaction date">
+      </div>
+      <div class="form-group">
+        <label for="transaction-amount">Transaction Amount</label>
+        <input type="number" class="form-control" id="transaction-amount" placeholder="Transaction Amount">
+      </div>
+      <button type="submit" id="analyze-data" class="btn btn-primary">Submit</button>
+    </form>
+
+    <section>
+
+      
+      <div class="card">
+        <div class="card-body result">
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Your page content -->
+    {% block content %}{% endblock %}
+
+    {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+
+    {% endblock %}
+
+    <script>
+
+      ; (function ($) {
+
+        const buttonClick = function (event) {
+          event.preventDefault()
+
+          const transactionDate = $('#transaction-date').val()
+          const transactionAmount = $('#transaction-amount').val()
+
+          const request = $.ajax({
+            url: '/analyze-recurring',
+            type: 'post',
+            data: JSON.stringify({
+              transactionDate: transactionDate,
+              transactionAmount: transactionAmount,
+            }),
+            contentType: "application/json",
+            dataType: 'json',
+            success: success
+          })
+
+          request.success = success
+          request.error = error
+        }
+
+        resultBox = $('.result')
+
+        const success = function(data) {
+          console.log(data)
+
+          resultBox.text('Analyzing result ' + data.result + '%')
+
+        }
+        const error = function(err) {
+          console.log(err)
+        }
+
+
+        $('document').ready(function () {
+          $('#analyze-form').submit(buttonClick)
+        })
+
+      })(jQuery)
+    </script>
+
+
+  </div>
+</body>
+
+</html>

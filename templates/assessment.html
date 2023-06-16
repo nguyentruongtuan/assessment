@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  {% block head %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% block styles %}
+  <!-- Bootstrap CSS -->
+  {{ bootstrap.load_css() }}
+  {% endblock %}
+
+  <title>Your page title</title>
+  {% endblock %}
+</head>
+
+<body>
+  <div class="container">
+
+
+    <h1>Assessment</h1>
+    <form id="analyze-form" action="/analyze-assessment" method="POST">
+      <div class="form-group">
+        <label for="assess-product">Product</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-product" id="serviceBNPL" checked value="BNPL">
+          <label class="form-check-label" for="serviceBNPL">
+            BNPL
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-product" id="serviceNOW" value="NOW">
+          <label class="form-check-label" for="serviceNOW">
+            NOW
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-product" id="servicePAY" value="PAY">
+          <label class="form-check-label" for="servicePAY">
+            PAY
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Source </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-source" id="source-now-receiver" checked value="NOW_RECEIVER">
+          <label class="form-check-label" for="source-now-receiver">
+            NOW RECEIVER
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-source" id="source-now-sender"
+            value="NOW_SENDER">
+          <label class="form-check-label" for="source-now-sender">
+            NOW SENDER
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-source" id="source-pay-receiver"
+            value="PAY_RECEIVER">
+          <label class="form-check-label" for="source-pay-receiver">
+            PAY RECEIVER
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-source" id="source-pay-sender"
+            value="PAY_SENDER">
+          <label class="form-check-label" for="source-pay-sender">
+            PAY SENDER
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>PPSRCheck </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-ppsr" id="ppsr-yes-no" checked value="yes-no-issues">
+          <label class="form-check-label" for="source-ppsr-yes-no">
+            yes-no-issues
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-ppsr" id="ppsr-yes" value="yes-issues">
+          <label class="form-check-label" for="source-ppsr-yes">
+            yes-issues
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-ppsr" id="ppsr-na" value="n/a">
+          <label class="form-check-label" for="source-ppsr-na">
+            n/a
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Company Structure </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-company" id="company-company" checked value="Company">
+          <label class="form-check-label" for="company-company">
+            Company
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-company" id="company-partnership" value="Partnership">
+          <label class="form-check-label" for="company-partnership">
+            Partnership
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-company" id="company-sole-trader" value="Sole Trader">
+          <label class="form-check-label" for="company-sole-trader">
+            Sole Trader
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-company" id="company-trust" value="Trust">
+          <label class="form-check-label" for="company-trust">
+            Trust
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Bank statement checked</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-bank-check" id="bank-true" checked value="1">
+          <label class="form-check-label" for="bank-true">
+            YES
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="assess-bank-check" id="bank-false" value="0">
+          <label class="form-check-label" for="bank-false">
+            NO
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" id="analyze-data" class="btn btn-primary">Submit</button>
+      </div>
+      
+    </form>
+
+    <section>
+      <div class="card">
+        <div class="card-body result">
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Your page content -->
+    {% block content %}{% endblock %}
+
+    {% block scripts %}
+    <!-- Optional JavaScript -->
+    {{ bootstrap.load_js() }}
+
+    {% endblock %}
+
+
+  </div>
+</body>
+
+</html>
